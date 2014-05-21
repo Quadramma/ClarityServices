@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ClarityServices.LedorVador" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ClarityServices.LedorVador" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="LedorVadorRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="packages" nillable="true" type="tns:ArrayOfLedorVadorFlowPackage" />
+      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LedorVadorRequest" nillable="true" type="tns:LedorVadorRequest" />
+  <xs:complexType name="ArrayOfLedorVadorFlowPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LedorVadorFlowPackage" nillable="true" type="tns:LedorVadorFlowPackage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLedorVadorFlowPackage" nillable="true" type="tns:ArrayOfLedorVadorFlowPackage" />
+  <xs:complexType name="LedorVadorFlowPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cantidad" type="xs:double" />
+      <xs:element minOccurs="0" name="documento_externId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="documento_numero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresaPropia" type="xs:int" />
+      <xs:element minOccurs="0" name="establecimiento_numero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="histClinica" type="xs:int" />
+      <xs:element minOccurs="0" name="importeUnitario" type="xs:double" />
+      <xs:element minOccurs="0" name="observacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="razonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoImpuestoId_Iva" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoServicioId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LedorVadorFlowPackage" nillable="true" type="tns:LedorVadorFlowPackage" />
+  <xs:complexType name="LedorVadorResponse">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="documentosAceptados" nillable="true" type="q1:ArrayOfint" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="documentosOmitidos" nillable="true" type="q2:ArrayOfint" />
+      <xs:element minOccurs="0" name="responseMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LedorVadorResponse" nillable="true" type="tns:LedorVadorResponse" />
+</xs:schema>

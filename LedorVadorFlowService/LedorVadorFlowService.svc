@@ -1,0 +1,4 @@
+﻿<%@ServiceHost 
+    Debug="false" 
+    Service="ClarityServices.LedorVador.LedorVadorFlowService" 
+    CodeBehind="~/LedorVadorFlowService.cs"%>

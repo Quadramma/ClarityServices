@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1c2b7389-80c7-4527-ba15-98147cc44abd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://app.smg.com.ar/pruebawsnet/WSLedorVadorQTECH/LedorVadorFlowService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LedorVadorFlowService.wsdl" MetadataType="Wsdl" ID="d5616947-0815-4242-810a-bcea68249801" SourceId="1" SourceUrl="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?wsdl" />
+    <MetadataFile FileName="LedorVadorFlowService.xsd" MetadataType="Schema" ID="6757d110-2c24-476c-b73e-3f42e706478d" SourceId="1" SourceUrl="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LedorVadorFlowService1.xsd" MetadataType="Schema" ID="604a58f4-c57f-40e5-8493-57573094b26d" SourceId="1" SourceUrl="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?xsd=xsd3" />
+    <MetadataFile FileName="LedorVadorFlowService2.xsd" MetadataType="Schema" ID="e1f00ff3-658d-4f1e-9628-ba14145913ac" SourceId="1" SourceUrl="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?xsd=xsd0" />
+    <MetadataFile FileName="LedorVadorFlowService3.xsd" MetadataType="Schema" ID="7715a199-9391-4d35-b897-f894215a60d4" SourceId="1" SourceUrl="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LedorVadorFlowService.disco" MetadataType="Disco" ID="f282b6f8-6dde-49bd-930e-9cd50bc15e7f" SourceId="1" SourceUrl="http://app.smg.com.ar/PruebaWSNet/WSLedorVadorQTECH/LedorVadorFlowService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
