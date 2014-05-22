@@ -67,10 +67,22 @@ namespace LedorVadorASMX {
                         localWarningMsg = CheckPackage(package);
                         if (localWarningMsg == "") { //Si se genero un mensaje de warning se omite directamente el paquete.
                             localWarningMsg = savePackage(db, conn, package);
+                            if (localWarningMsg == "") {
+                                try {
+                                    response.documentosAceptados.Add(Int32.Parse(package.documento_externId));
+                                } catch (Exception e) {
+                                    localWarningMsg = "[" + e.Message + "]";
+                                }
+                            }
                         }
                         warningMsg += localWarningMsg;
                         aceptados++;
                     } catch (Exception e) {
+                        try {
+                            response.documentosOmitidos.Add(Int32.Parse(package.documento_externId));
+                        } catch (Exception ex) {
+                            warningMsg += "[" + ex.Message + "]";
+                        }
                         logger.write(e.ToString());
                         exceptionMsg += Environment.NewLine + e.ToString().Substring(0, 300);
                         omitidos++;
@@ -93,23 +105,31 @@ namespace LedorVadorASMX {
         }
 
         private string savePackage(DbHandler db, SqlConnection conn, LedorVadorFlowPackage package) {
-            DataSet ds = db.Call("MIG_DocumentoFromQTECH_sp", conn, (SqlDataAdapter da) => {
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@HistClinica", DbType.Int32).Value = package.histClinica;
-                da.SelectCommand.Parameters.AddWithValue("@RazonSocial", DbType.String).Value = package.razonSocial;
-                da.SelectCommand.Parameters.AddWithValue("@EmpresaID_Propia", DbType.Int32).Value = package.empresaPropia;
-                da.SelectCommand.Parameters.AddWithValue("@Documento_ExternID", DbType.String).Value = package.documento_externId;
-                da.SelectCommand.Parameters.AddWithValue("@Establecimiento_Numero", DbType.String).Value = package.establecimiento_numero;
-                da.SelectCommand.Parameters.AddWithValue("@Documento_Numero", DbType.String).Value = package.documento_numero;
-                da.SelectCommand.Parameters.AddWithValue("@Fecha", DbType.DateTime).Value = package.fecha;
-                da.SelectCommand.Parameters.AddWithValue("@Observacion", DbType.String).Value = package.observacion;
-                da.SelectCommand.Parameters.AddWithValue("@TipoServicioID", DbType.Int32).Value = package.tipoServicioId;
-                da.SelectCommand.Parameters.AddWithValue("@TipoImpuestoID_IVA", DbType.Int32).Value = package.tipoImpuestoId_Iva;
-                da.SelectCommand.Parameters.AddWithValue("@Cantidad", DbType.Decimal).Value = package.cantidad;
-                da.SelectCommand.Parameters.AddWithValue("@ImporteUnitario", DbType.Double).Value = package.importeUnitario;
-            });
-
-            return "";
+            try {
+                DataSet ds = db.Call("MIG_DocumentoFromQTECH_sp", conn, (SqlDataAdapter da) => {
+                    da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    da.SelectCommand.Parameters.AddWithValue("@HistClinica", DbType.Int32).Value = package.histClinica;
+                    da.SelectCommand.Parameters.AddWithValue("@RazonSocial", DbType.String).Value = package.razonSocial;
+                    da.SelectCommand.Parameters.AddWithValue("@EmpresaID_Propia", DbType.Int32).Value = package.empresaPropia;
+                    da.SelectCommand.Parameters.AddWithValue("@Documento_ExternID", DbType.String).Value = package.documento_externId;
+                    da.SelectCommand.Parameters.AddWithValue("@Establecimiento_Numero", DbType.String).Value = package.establecimiento_numero;
+                    da.SelectCommand.Parameters.AddWithValue("@Documento_Numero", DbType.String).Value = package.documento_numero;
+                    da.SelectCommand.Parameters.AddWithValue("@Fecha", DbType.DateTime).Value = package.fecha;
+                    da.SelectCommand.Parameters.AddWithValue("@Observacion", DbType.String).Value = package.observacion;
+                    da.SelectCommand.Parameters.AddWithValue("@TipoServicioID", DbType.Int32).Value = package.tipoServicioId;
+                    da.SelectCommand.Parameters.AddWithValue("@TipoImpuestoID_IVA", DbType.Int32).Value = package.tipoImpuestoId_Iva;
+                    da.SelectCommand.Parameters.AddWithValue("@Cantidad", DbType.Decimal).Value = package.cantidad;
+                    da.SelectCommand.Parameters.AddWithValue("@ImporteUnitario", DbType.Double).Value = package.importeUnitario;
+                });
+                try {
+                    string posibleError = ds.Tables[0].Rows[0].ToString();
+                    return posibleError;
+                } catch (Exception) {
+                    return "";
+                }
+            } catch (Exception e) {
+                return e.Message;
+            }
         }
 
 
